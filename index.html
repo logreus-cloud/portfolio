@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ligreus — student developer</title>
+<meta name="description" content="Портфолио Ligreus: веб-приложения на Flask и Express, деплой на Render, хакатоны. deploy first, get clever later.">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="Ligreus — student developer">
+<meta property="og:description" content="Веб-приложения на Flask и Express, деплой на Render, хакатоны.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#0d1117;
+  --canvas-inset:#010409;
+  --surface:#161b22;
+  --border:#30363d;
+  --border-soft:#21262d;
+  --fg:#e6edf3;
+  --muted:#8d96a0;
+  --accent:#4493f8;
+  --green:#3fb950;
+  --py:#3572a5;
+  --js:#f1e05a;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,"Liberation Mono",Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--canvas);
+  color:var(--fg);
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+p{margin:0 0 1rem}
+p:last-child{margin-bottom:0}
+h1,h2,h3{margin:0;line-height:1.25}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+.page{max-width:76rem;margin:0 auto;padding:1.5rem 1rem 5rem}
+
+/* ---- banner ---- */
+.banner{
+  position:relative;
+  border:1px solid var(--border);
+  border-radius:6px;
+  background:
+    radial-gradient(120% 140% at 88% 50%, rgba(68,147,248,.14), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg,#0b0f16,#05070b);
+  padding:2.75rem 1.75rem;
+  overflow:hidden;
+}
+.banner .name{
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:clamp(1.9rem,6.5vw,3.25rem);
+  letter-spacing:.34em;
+  margin-right:-.34em;
+  color:#f0f6fc;
+}
+.banner .rule{width:min(19rem,70%);height:1px;background:linear-gradient(90deg,var(--border),transparent);margin:1.1rem 0}
+.banner .tagline{font-family:var(--mono);font-size:.95rem;color:#c9d1d9;margin:0 0 .35rem}
+.banner .stackline{font-family:var(--mono);font-size:.85rem;color:var(--muted);margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
+.chips span{
+  font-family:var(--mono);font-size:.78rem;color:#c9d1d9;
+  border:1px solid var(--border);border-radius:6px;padding:.28rem .6rem;
+  background:rgba(22,27,34,.7);
+}
+
+/* ---- layout ---- */
+.cols{display:grid;gap:2rem;margin-top:2rem}
+@media (min-width:62rem){.cols{grid-template-columns:18.5rem 1fr;gap:3rem;align-items:start}}
+
+/* ---- sidebar ---- */
+.side{display:grid;gap:1rem}
+.avatar{width:11rem;height:11rem;border-radius:50%;border:1px solid var(--border);display:block}
+@media (min-width:62rem){.avatar{width:100%;height:auto;aspect-ratio:1}}
+.side h1{font-size:1.6rem;font-weight:600}
+.side .handle{font-size:1.2rem;font-weight:300;color:var(--muted);line-height:1.2}
+.side .role{color:var(--fg);font-size:.95rem}
+.facts{display:grid;gap:.4rem;font-size:.9rem;color:var(--muted);border-top:1px solid var(--border-soft);padding-top:1rem}
+.facts a{color:var(--muted)}
+.facts a:hover{color:var(--accent)}
+
+/* ---- readme body ---- */
+.readme{border:1px solid var(--border);border-radius:6px;background:var(--canvas);padding:2rem 1.5rem}
+@media (min-width:48rem){.readme{padding:2.5rem}}
+.readme > section + section{margin-top:2.5rem;border-top:1px solid var(--border-soft);padding-top:2.5rem}
+.readme h2{font-size:1.35rem;font-weight:600;margin-bottom:1rem}
+.readme p,.readme li{max-width:66ch;color:#c9d1d9}
+.readme ul{margin:0;padding-left:1.2rem;display:grid;gap:.5rem}
+.rule-quote{
+  border-left:3px solid var(--border);
+  padding:.15rem 0 .15rem 1rem;
+  color:var(--muted);
+}
+.rule-quote b{color:var(--fg);font-weight:600}
+
+/* ---- tech ---- */
+.tech{display:grid;gap:1.1rem}
+.tech .group{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
+.tech .glabel{font-size:.85rem;color:var(--muted);width:100%;margin-bottom:-.2rem}
+.tag{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;
+  border:1px solid var(--border);border-radius:6px;padding:.3rem .62rem;
+  background:var(--surface);color:#c9d1d9;
+}
+
+/* ---- repo cards ---- */
+.repos{display:grid;gap:1rem}
+@media (min-width:44rem){.repos{grid-template-columns:1fr 1fr}}
+.repo{
+  border:1px solid var(--border);border-radius:6px;background:var(--canvas);
+  padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.6rem;
+}
+.repo .top{display:flex;align-items:center;gap:.6rem}
+.repo .rname{font-weight:600;color:var(--accent);font-size:1rem}
+.vis{
+  font-size:.7rem;line-height:1.5;color:var(--muted);
+  border:1px solid var(--border);border-radius:999px;padding:0 .5rem;
+  margin-left:auto;flex:none;
+}
+.repo p{font-size:.88rem;color:var(--muted);margin:0;max-width:none}
+.repo .foot{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;font-size:.78rem;color:var(--muted);margin-top:auto;padding-top:.3rem}
+.lang{display:inline-flex;align-items:center;gap:.4rem}
+.lang::before{content:"";width:.7rem;height:.7rem;border-radius:50%;background:var(--js);flex:none}
+.lang.py::before{background:var(--py)}
+.live{color:var(--green);font-weight:500}
+.live:hover{color:var(--green)}
+.repo .foot a{font-size:.78rem}
+
+/* ---- learning / contact ---- */
+.mono-line{font-family:var(--mono);font-size:.82rem;color:var(--muted);border:1px solid var(--border);border-radius:6px;background:var(--surface);padding:.7rem .9rem;display:inline-block;max-width:100%}
+.contact-links{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;margin-top:1rem}
+footer{margin-top:2.5rem;text-align:center;font-size:.8rem;color:var(--muted)}
+.note{font-size:.82rem;color:var(--muted);margin-top:1rem}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="banner">
+    <div class="name">LIGREUS</div>
+    <div class="rule"></div>
+    <p class="tagline">student developer · learning in public</p>
+    <p class="stackline">python · javascript · flask · express · ai tooling</p>
+    <div class="chips"><span>хакатоны</span><span>ship → then polish</span><span>вайбкодинг</span></div>
+  </header>
+
+  <div class="cols">
+
+    <aside class="side">
+      <img class="avatar" src="https://github.com/logreus-cloud.png" alt="Аватар Ligreus" width="416" height="416">
+      <div>
+        <h1>Ligreus</h1>
+        <div class="handle">logreus-cloud · he/him</div>
+      </div>
+      <div class="role">Student / Junior</div>
+      <div class="facts">
+        <div>Казахстан · UTC+05:00</div>
+        <div><a href="https://github.com/logreus-cloud">github.com/logreus-cloud</a></div>
+        <div><a href="mailto:userovilyas@gmail.com">userovilyas@gmail.com</a></div>
+      </div>
+    </aside>
+
+    <main class="readme">
+
+      <section>
+        <h2>Обо мне</h2>
+        <p>Учусь делать софт тем, что доделываю его до работающего. Почти всё, что здесь есть, начиналось как идея на выходные, учебная задача или прототип с хакатона — небольшие веб-приложения, инструменты с ИИ и эксперименты, которые чему-то научили даже когда не выжили.</p>
+        <p class="rule-quote"><b>Правило: сначала деплой, умности потом.</b> Работающий публичный адрес в первый день лучше идеального кода, который никто не может открыть.</p>
+      </section>
+
+      <section>
+        <h2>Чем занимаюсь сейчас</h2>
+        <ul>
+          <li>Собираю небольшие веб-приложения на Flask и Express, разворачиваю на Render.</li>
+          <li>Разбираюсь, где LLM реально помогает, а где обычные детерминированные правила делают работу лучше.</li>
+          <li>Готовлюсь к хакатонам: переиспользуемый шаблон проекта, деплой меньше чем за час, демо, которое не разваливается.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Стек</h2>
+        <div class="tech">
+          <div class="group">
+            <div class="glabel">Языки</div>
+            <span class="tag">PYTHON</span><span class="tag">JAVASCRIPT</span><span class="tag">HTML</span><span class="tag">CSS</span>
+          </div>
+          <div class="group">
+            <div class="glabel">Бэкенд и данные</div>
+            <span class="tag">FLASK</span><span class="tag">EXPRESS</span><span class="tag">NODE.JS</span><span class="tag">SQLITE</span>
+          </div>
+          <div class="group">
+            <div class="glabel">Инструменты</div>
+            <span class="tag">GIT</span><span class="tag">GITHUB</span><span class="tag">VS CODE</span><span class="tag">RENDER</span><span class="tag">DOCKER</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Проекты</h2>
+        <p>Только то, что действительно работает — остальное приватное или слишком сырое, чтобы показывать.</p>
+        <div class="repos">
+
+          <article class="repo">
+            <div class="top"><span class="rname">triage-mvp</span><span class="vis">Public</span></div>
+            <p>Медицинский триаж: человек описывает симптомы, система задаёт уточняющие вопросы и возвращает уровень срочности. Решают детерминированные правила в отдельном сервисе, интерфейс показывает зону на 3D-модели тела.</p>
+            <div class="foot">
+              <span class="lang">JavaScript · Python</span>
+              <a class="live" href="https://triage-web-eaj2.onrender.com/">Живая версия</a>
+              <a href="https://github.com/logreus-cloud/triage-mvp">Код</a>
+            </div>
+          </article>
+
+          <article class="repo">
+            <div class="top"><span class="rname">hackathon-template</span><span class="vis">Private</span></div>
+            <p>Скелет для старта на хакатоне: клонируешь — и через сорок минут есть публичная ссылка. Express без сборки, <code>/api/health</code> с отметкой коммита, демо-режим с записанными ответами модели и смоук-скрипт по развёрнутому адресу.</p>
+            <div class="foot"><span class="lang">JavaScript</span><span>собран под конкретные грабли</span></div>
+          </article>
+
+          <article class="repo">
+            <div class="top"><span class="rname">zauchivanie-koda</span><span class="vis">Public</span></div>
+            <p>Тренажёр для заучивания кода: карточки с интервальным повторением, квизы и практика перепечатывания. В комплекте сотня сниппетов.</p>
+            <div class="foot">
+              <span class="lang py">Python · Flask</span>
+              <a href="https://github.com/logreus-cloud/zauchivanie-koda">Код</a>
+            </div>
+          </article>
+
+          <article class="repo">
+            <div class="top"><span class="rname">HealthTrackerFlask</span><span class="vis">Public</span></div>
+            <p>Трекер здоровья: записи, графики, бэкенд на Flask за фронтендом на чистом JS.</p>
+            <div class="foot">
+              <span class="lang">Flask · JS</span>
+              <a href="https://github.com/logreus-cloud/HealthTrackerFlask">Код</a>
+            </div>
+          </article>
+
+          <article class="repo">
+            <div class="top"><span class="rname">EnergyMind-AI</span><span class="vis">Public</span></div>
+            <p>Приложение по энергопотреблению с ИИ: разделённые фронтенд и бэкенд с общим контрактом API, поднимается через Docker Compose. В работе.</p>
+            <div class="foot">
+              <span class="lang">JavaScript · Docker</span>
+              <a href="https://github.com/logreus-cloud/EnergyMind-AI">Код</a>
+            </div>
+          </article>
+
+        </div>
+        <p class="note">Хостинг на бесплатном плане Render засыпает после 15 минут простоя — первая загрузка живой версии занимает до минуты.</p>
+      </section>
+
+      <section>
+        <h2>Учу дальше</h2>
+        <div class="mono-line">тестирование · базы данных дальше SQLite · CI, который реально запускается · чтение чужого кода</div>
+      </section>
+
+      <section>
+        <h2>Связь</h2>
+        <p>Всегда посреди какого-нибудь проекта — напиши, если что-то отсюда пригодилось.</p>
+        <div class="contact-links">
+          <a href="mailto:userovilyas@gmail.com">userovilyas@gmail.com</a>
+          <a href="https://github.com/logreus-cloud">GitHub</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>Ligreus, 2026</footer>
+</div>
+</body>
+</html>
