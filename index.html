@@ -173,7 +173,9 @@ footer{margin-top:2.5rem;text-align:center;font-size:.8rem;color:var(--muted)}
         <h2>Обо мне</h2>
         <p>Я студент и учусь разработке, выпуская проекты: небольшие веб-приложения, инструменты с ИИ и прототипы с хакатонов. У каждого появляется публичная ссылка раньше, чем красивый код.</p>
         <picture class="rule-card">
-          <source srcset="assets/rule-ru.svg" media="(prefers-color-scheme: dark)">
+          <source srcset="assets/rule-ru-mobile.svg" media="(max-width: 600px) and (prefers-color-scheme: dark)" width="600" height="270">
+          <source srcset="assets/rule-ru-mobile-light.svg" media="(max-width: 600px)" width="600" height="270">
+          <source srcset="assets/rule-ru.svg" media="(prefers-color-scheme: dark)" width="1200" height="150">
           <img src="assets/rule-ru-light.svg" alt="Правило 01: сначала деплой, потом красота. Всё ниже реально работает; остальное приватно или слишком сырое." width="1200" height="150">
         </picture>
         <p class="rule-caption">Нашли что-то полезное или нужен ещё один человек в команду на хакатон? Откройте issue в любом репозитории или напишите на почту.</p>
